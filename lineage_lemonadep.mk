@@ -13,9 +13,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/oneplus/lemonadep/device.mk)
 
 # Inherit some common VoltageOS stuff.
-$(call inherit-product, vendor/voltage/config/common_full_phone.mk)
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
-PRODUCT_NAME := voltage_lemonadep
+PRODUCT_NAME := lineage_lemonadep
 PRODUCT_DEVICE := lemonadep
 PRODUCT_MANUFACTURER := OnePlus
 PRODUCT_BRAND := OnePlus
@@ -35,5 +35,24 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 # UDFPS animations
 EXTRA_UDFPS_ANIMATIONS := true
 
-# VoltageOS Stuffs
-VOLTAGE_BUILD_TYPE := OFFICIAL
+# Lunch banner maintainer variable
+RISING_MAINTAINER="Abuzar Shaheen"
+
+# Chipset/Maintainer properties (ro.rising.chipset/ro.rising.maintainer)
+# Set RISING_MAINTAINER for version control
+# (Optional if builder is setting properties via init_<device>.cpp)
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    RisingChipset="sm8350" \
+    RisingMaintainer="Abuzar Shaheen"
+
+# Disable/enable blur support, false by default
+TARGET_ENABLE_BLUR := true
+
+# Whether to ship aperture camera, false by default
+PRODUCT_NO_CAMERA := true
+
+# Whether to ship lawnchair launcher, false by default
+TARGET_PREBUILT_LAWNCHAIR_LAUNCHER := false
+
+# CORE build flags
+WITH_GMS := true
